@@ -2,7 +2,7 @@
   <li>
     <span 
       @click="updateTodo"
-      :class="{ 'completed': todo.isCompleted }"
+      :class="{ 'completed': !todo.completed }"
     >
       {{ todo.title }}
     </span>
@@ -18,10 +18,14 @@ export default {
   },
   methods: {
     deleteTodo: function () {
-      this.$store.dispatch('deleteTodo', this.todo)
+      this.$store.dispatch('deleteTodo', this.todo.id)
     },
     updateTodo: function () {
-      this.$store.dispatch('updateTodo', this.todo)
+      console.log(this)
+      this.$store.dispatch('updateTodo', {
+        id: this.todo.id,
+        completed: this.todo.completed,
+      })
     }
   }
 

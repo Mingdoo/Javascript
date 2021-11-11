@@ -20,8 +20,8 @@ export default {
     createTodo: function () {
       const todoItem = {
         title: this.todoTitle,
-        isCompleted: false,
-        date: new Date().getTime()
+        completed: false,
+        userId: 1,
       }
 
       // this.$store.commit('CREATE_TODO', todoItem)
