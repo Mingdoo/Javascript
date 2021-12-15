@@ -21,10 +21,18 @@ export default {
     }
   },
   methods: {
+    setToken: function () {
+      const token = localStorage.getItem('jwt')
+      const headers = {
+        Authorization: `JWT ${token}`
+      }
+      return headers
+    },
     getTodos: function () {
       axios({
         method: 'get',
-        url: 'http://127.0.0.1:8000/todos/'
+        url: 'http://127.0.0.1:8000/todos/',
+        headers: this.setToken()
       })
         .then(res => {
           console.log(res)

@@ -1,11 +1,14 @@
 <template>
   <div id="app">
     <div id="nav">
-      <span>
+      <span v-if="isLogin">
+        |
         <router-link :to="{ name: 'TodoList' }">Todo List</router-link> | 
         <router-link :to="{ name: 'CreateTodo' }">Create Todo</router-link> |
+        <a href="">{{ username }}님 ㅎㅇ</a> | 
+        <router-link @click.native='logout' to="#">Logout</router-link>|
       </span>
-      <span>
+      <span v-else>
         <router-link :to="{ name: 'Signup' }">Signup</router-link> |
         <router-link :to="{ name: 'Login' }">Login</router-link> 
       </span>
@@ -15,16 +18,30 @@
 </template>
 
 <script>
+import jwt_decode from "jwt-decode"
+
 export default {
   name: 'App',
   data: function () {
-    return {}
+    return {
+      isLogin: false,
+      username: null,
+    }
   },
   methods: {
-
+    logout: function() {
+      this.isLogin = false
+      localStorage.removeItem('jwt')
+      this.$router.push({name: 'Login'})
+    }
   },
-  created: function () {
-
+  updated: function () {
+    const token = localStorage.getItem('jwt')
+    const decodedToken = jwt_decode(token)
+    this.username = decodedToken.username
+    if (token) {
+      this.isLogin = true
+    }
   }
 }
 </script>

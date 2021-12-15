@@ -18,7 +18,7 @@ def todo_list_create(request):
     elif request.method == 'POST':
         serializer = TodoSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -28,7 +28,7 @@ def todo_update_delete(request, todo_pk):
     if request.method == 'PUT':
         serializer = TodoSerializer(todo, data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.save()
+            serializer.save(user=request.user)
             return Response(serializer.data)
 
     elif request.method == 'DELETE':
