@@ -1,0 +1,42 @@
+.container {
+  background: beige;
+  height: 100vh;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.item {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+.item1 {
+  background: blue;
+  flex-grow: 1;
+}
+
+.item2 {
+  background: brown;
+  flex-grow: 1;
+}
+
+.item3 {
+  background: rgb(116, 19, 19);
+}
+
+.item4 {
+  background: rgb(102, 94, 94);
+}
+
+.item5 {
+  background: rgb(44, 72, 163);
+}
+
+.item6 {
+  background: rgb(180, 37, 206);
+}
+
+.item7 {
+  background: rgb(36, 204, 87);
+}
